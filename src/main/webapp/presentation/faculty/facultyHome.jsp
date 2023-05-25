@@ -97,6 +97,8 @@ studentDetails = (java.util.ArrayList) request.getAttribute("listOfAllStudents")
 <div class = "first-section">
 <p class="icon"> <i class="fa-sharp fa-light fa-user"></i> ${currentuser}  </p>
 <p class="icon fa-fade"> <i class="fa-sharp fa-arrow-right-from-bracket fa-beat"></i><a href="logout"> Logout </a></p>
+<p style = "color:#e0d684;"> <i class="fa-sharp fa-calendar-days"></i> ${currentBusinessDate}</p>
+
 </div>
 
 <div class = "second-section">
@@ -107,7 +109,9 @@ studentDetails = (java.util.ArrayList) request.getAttribute("listOfAllStudents")
         <tr>
             <th>Username</th>
             <th>Name</th>
+            <th>Course</th>
             <th>Roll Number</th>
+
         </tr>
     </thead>
     <tbody>
@@ -116,7 +120,8 @@ studentDetails = (java.util.ArrayList) request.getAttribute("listOfAllStudents")
         <tr>
             <td>${value.getStudentUsername()}</td>
             <td>${value.getStudentName()}</td>
-            <td><i class="fa-solid fa-arrow-right fa-beat-fade"></i><a href = "faculty/studentDetail?rollNumber=${value.getRollNumber()}"> ${value.getRollNumber()}</a></td>
+            <td>${value.getCourse()}/${value.getBranch()}</td>
+            <td><i class="fa-solid fa-arrow-right fa-beat-fade"></i><a href = "faculty/studentDetail?username=${value.getStudentUsername()}"> ${value.getRollNumber()}</a></td>
         </tr>
 </c:forEach>
 

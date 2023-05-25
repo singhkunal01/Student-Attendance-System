@@ -1,4 +1,6 @@
 <%@ page contentType="text/html" language= "java" %>
+<%@taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
+<%@taglib prefix="spring" uri="http://www.springframework.org/tags"%>
 <%@ page import="org.project.model.StudentRecord" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 
@@ -98,7 +100,7 @@ height : 80%;
     font-weight : 600;
 }
 
-.functionalSection .functionalButtons{
+.functionalSection .functionalButtons,.formDetails{
     display : flex;
     flex-direction : column;
 }
@@ -128,24 +130,60 @@ height : 80%;
   bottom :0;
 }
 
+#confirmationAlert{
+color :red;
+font-weight:600;
+text-align:center;
+}
+
+.formDetails {
+align-items:center;
+height:60%;
+justify-content:center;
+}
+.formDetails div{
+box-shadow: rgb(204, 219, 232) 3px 3px 6px 0px inset, rgba(255, 255, 255, 0.5) -3px -3px 6px 1px inset;
+width:50%;
+padding : 40px 30px;
+}
+
+input[type="submit"]{
+    color: #fff;
+    background-color: #a75027;
+    padding: 13px 19px;
+    border: none;
+    border-radius: 5px;
+    outline: none;
+    font-family: 'Poppins';
+    font-size: 16px;
+    text-align: center;
+    cursor : pointer;
+}
+
+input[type="submit"]:hover{
+  opacity : 0.9;
+  transition : 0.4s all;
+}
+
+#attendanceDate{
+    padding: 5px 25px;
+    color: #a75027;
+}
+
 
 
 </style>
 </head>
 <body>
-<% StudentRecord currentLoggedInStudentData = (StudentRecord)request.getAttribute("currentLoggedInStudentData");
-session.setAttribute("currentLoggedInStudentData",currentLoggedInStudentData);
-%>
-
 <div class = "main-container">
     <div class = "first-section">
         <p class="icon"> <i class="fa-sharp fa-light fa-user"></i> Hi, &nbsp;${currentLoggedInStudentData.getStudentName()}  </p>
-        <p class="icon fa-fade"> <i class="fa-sharp fa-arrow-right-from-bracket fa-beat"></i><a href="logout"> Logout </a></p>
+        <p class="icon fa-fade"> <i class="fa-sharp fa-arrow-right-from-bracket fa-beat"></i><a href="${pageContext.request.contextPath}/loginPage"> Back </a></p>
         <p style = "color:#e0d684;"> <i class="fa-sharp fa-calendar-days"></i> ${currentBusinessDate}</p>
     </div>
 
     <div class = "second-section">
-        <h2 class="">Apply For Attendance / Leaves</h2>
+        <h2 class="">Apply For Attendance</h2>
         <div class = "studentData">
             <ul>
                 <li><strong>Roll Number :</strong>${currentLoggedInStudentData.getRollNumber()}</li>
@@ -155,19 +193,17 @@ session.setAttribute("currentLoggedInStudentData",currentLoggedInStudentData);
                 <li><strong>Date Of Birth :</strong>${currentLoggedInStudentData.getDateOfBirth()}</li>
             </ul>
         </div>
-        <div class = "functionalSection">
-            <div class = "functionalInformation">
-             <h3>Information</h3>
-             <p>
-             Hello <span>${currentLoggedInStudentData.getStudentName()}</span>, Welcome to your Attendance and Leave Page! This platform empowers you to track your attendance records,apply for attendance, apply for leaves, and manage your academic schedule efficiently.
-             </p>
-            <p> - Future Institute </p>
+        <div class = "formDetails">
+        <div>
+        <form:form modelAttribute = "studentAttendanceRecord" method = "POST">
+            <label> Date Of Attendance : </label>
+             <form:input type = "date" path = "attendanceDate" required="required"/> <br>
+             <form:errors path="attendanceDate"/><br><br>
+             <input type="submit" value="Apply Attendance"></a>
+        </form:form>
+             ${message}
+             </div>
             </div>
-            <div class = "functionalButtons">
-               <a href = "student/applyAttendance">Apply Attendance</a>
-               <a href = "student/applyLeave">Apply Leave</a>
-            </div>
-        </div>
         <p id = "copyright-text"> &copy;Kunal Singh </p>
      </div>
 </div>

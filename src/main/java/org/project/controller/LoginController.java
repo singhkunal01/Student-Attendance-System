@@ -24,7 +24,11 @@ public class LoginController {
     // here during loginPage mapping the role will be checked whether the person is FACULTY or STUDENT
     @GetMapping("/loginPage")
     String performLoginOnTheBasisOfRole(ModelMap mp) {
+
 // if user is faculty then show the data of all students with some columns
+        LocalDate currentBusinessDate = LocalDate.now();
+        mp.addAttribute("currentBusinessDate", currentBusinessDate);
+
         Authentication auth = SecurityContextHolder.getContext().getAuthentication();
         if (auth.getAuthorities().stream().anyMatch(role -> role.getAuthority().equals("FACULTY"))) {
 //            logger.info(auth.getName() + "Logged In");
@@ -37,9 +41,7 @@ public class LoginController {
         }
         // find the name of student who logged In on the basis of username
         StudentRecord studentRecord = service.studentData(auth.getName());
-        LocalDate currentBusinessDate = LocalDate.now();
         mp.addAttribute("currentLoggedInStudentData", studentRecord);
-        mp.addAttribute("currentBusinessDate", currentBusinessDate);
         return "student/studentHome";
 
     }

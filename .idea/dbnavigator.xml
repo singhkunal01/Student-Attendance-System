@@ -25,10 +25,10 @@ commit;
 -----------------------------------------
 
 -- inserting some dummy data in student record table
-insert all 
-into sys.student_record values ('kunal_1904760100054','Kunal Singh',1904760100054,'BTech','CSE','14-MAY-02',4)
-into sys.student_record values ('abhishek_1904760100007','Abhishek Chakravarti',1904760100007,'BTech','CSE','12-AUG-02',4)
-select *from dual;
+--insert all 
+--into sys.student_record values ('kunal_1904760100054','Kunal Singh',1904760100054,'BTech','CSE','14-MAY-02',4)
+--into sys.student_record values ('abhishek_1904760100007','Abhishek Chakravarti',1904760100007,'BTech','CSE','12-AUG-02',4)
+--select *from dual;
                 
 -- inserting one more user into student record
 insert into sys.student_record values ('lastOne_1904760100111','Last One',1904760100111,'BTech','CSE','23-Jun-01',4);
@@ -37,6 +37,7 @@ select *from sys.student_record;
 
 
 -- in student_attendance record table data will be inserted from UI dynamically
+desc;
 
 commit;
 
@@ -63,6 +64,9 @@ select  *from sys.STUDENT_ATTENDANCERECORD;]]></console>
   </component>
   <component name="DBNavigator.Project.ParserDiagnosticsManager">
     <diagnostics-history />
+  </component>
+  <component name="DBNavigator.Project.ScriptExecutionManager" clear-outputs="true">
+    <recently-used-interfaces />
   </component>
   <component name="DBNavigator.Project.Settings">
     <connections>
