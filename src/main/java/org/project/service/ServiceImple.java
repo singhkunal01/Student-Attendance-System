@@ -15,4 +15,9 @@ public class ServiceImple implements Service {
     public List<StudentRecord> getAllStudentsDetails() {
         return dao.getAllStudentsDetails();
     }
+
+    @Override
+    public StudentRecord studentData(String username) {
+        return dao.studentData(username);
+    }
 }

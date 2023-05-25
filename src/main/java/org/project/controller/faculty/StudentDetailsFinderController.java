@@ -1,4 +1,4 @@
-package org.project.controller.student;
+package org.project.controller.faculty;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;

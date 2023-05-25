@@ -9,5 +9,7 @@ import java.util.List;
 @Repository
 public interface DaoImpl {
     List<StudentRecord> getAllStudentsDetails ();
+    StudentRecord studentData(String username);
+
 
 }

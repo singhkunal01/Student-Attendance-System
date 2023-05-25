@@ -11,6 +11,8 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.GetMapping;
 
+import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.List;
 
 @Controller
@@ -33,6 +35,11 @@ public class LoginController {
 
             return "faculty/facultyHome";
         }
+        // find the name of student who logged In on the basis of username
+        StudentRecord studentRecord = service.studentData(auth.getName());
+        LocalDate currentBusinessDate = LocalDate.now();
+        mp.addAttribute("currentLoggedInStudentData", studentRecord);
+        mp.addAttribute("currentBusinessDate", currentBusinessDate);
         return "student/studentHome";
 
     }
