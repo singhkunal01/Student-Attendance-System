@@ -47,6 +47,7 @@ public class ApplyAttendanceLeaveController {
         studentAttendanceRecord.setRollNumber(studentRecord.getRollNumber());
         studentAttendanceRecord.setReason("No Reason required in Attendance !!");
         studentAttendanceRecord.setAttendanceType("Present");
+        studentAttendanceRecord.setApprovalRejectionStatus("Pending");
 
         Long rollNumber = studentRecord.getRollNumber();
         LocalDate attendanceDate = studentAttendanceRecord.getAttendanceDate();
@@ -56,7 +57,7 @@ public class ApplyAttendanceLeaveController {
         if (ChronoUnit.DAYS.between(attendanceDate, LocalDate.now()) < 0) {
             model.addAttribute("message", "Date Must Be smaller or same as the current business date !");
 
-        } else if (serviceImple.checkValidityForApplying(rollNumber, attendanceDate,attendanceType)) {
+        } else if (serviceImple.checkValidityForApplying(rollNumber, attendanceDate, attendanceType)) {
             serviceImple.attendanceAppliedInsertion(studentAttendanceRecord);
             model.addAttribute("message", "Applied Successfully");
         } else model.addAttribute("message", "Already Applied !");
@@ -85,6 +86,7 @@ public class ApplyAttendanceLeaveController {
         studentAttendanceRecord.setStudentName(studentRecord.getStudentName());
         studentAttendanceRecord.setRollNumber(studentRecord.getRollNumber());
         studentAttendanceRecord.setAttendanceType("Leave");
+        studentAttendanceRecord.setApprovalRejectionStatus("Pending");
 
         Long rollNumber = studentRecord.getRollNumber();
         LocalDate attendanceDate = studentAttendanceRecord.getAttendanceDate();
@@ -94,7 +96,7 @@ public class ApplyAttendanceLeaveController {
         if (ChronoUnit.DAYS.between(attendanceDate, LocalDate.now()) < 0) {
             model.addAttribute("message", "Date Must Be smaller or same as the current business date !");
 
-        } else if (serviceImple.checkValidityForApplying(rollNumber, attendanceDate,attendanceType)) {
+        } else if (serviceImple.checkValidityForApplying(rollNumber, attendanceDate, attendanceType)) {
             serviceImple.leaveAppliedInsertion(studentAttendanceRecord);
             model.addAttribute("message", "Applied Successfully");
         } else model.addAttribute("message", "Already Applied !");

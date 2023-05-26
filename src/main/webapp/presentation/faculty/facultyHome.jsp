@@ -84,6 +84,15 @@ color:#e07e10f0;
 font-weight:500;
 border-bottom : 2px solid;
 }
+#copyright-text {
+  font-size: 1rem;
+  font-family: "Nanum Pen Script";
+  text-align:center;
+  position : absolute;
+  left : 50%;
+  bottom :0;
+}
+
 </style>
 </head>
 <body>
@@ -102,7 +111,7 @@ studentDetails = (java.util.ArrayList) request.getAttribute("listOfAllStudents")
 </div>
 
 <div class = "second-section">
-<h2 class="">All Student Records</h2>
+<h2>All Student Records</h2>
 <div id = "tableData">
 <table id = "studentsRecords" class="display">
 <thead>
@@ -128,7 +137,9 @@ studentDetails = (java.util.ArrayList) request.getAttribute("listOfAllStudents")
     </tbody>
 </table>
 </div>
+        <p id = "copyright-text"> &copy;Kunal Singh </p>
  </div>
+
 </div>
 <script>
       $(document).ready(function () {

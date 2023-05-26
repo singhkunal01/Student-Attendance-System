@@ -16,7 +16,8 @@ public interface Dao {
 
     boolean checkValidityForApplying(Long rollNumber, LocalDate attendanceDate,String attendanceType);
 
-    StudentAttendanceRecord getStudentDetailsUsingUsername(Long rollNumber);
+    List<StudentAttendanceRecord> getStudentDetailsUsingRollNumber(Long rollNumber);
+    boolean updateStatusOfStudent(Long rollNumber,String status,LocalDate dateOfAttendance);
 
 
 }

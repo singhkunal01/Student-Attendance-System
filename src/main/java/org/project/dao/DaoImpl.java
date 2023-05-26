@@ -1,7 +1,8 @@
 package org.project.dao;
 
 import org.project.model.StudentAttendanceRecord;
-import org.project.model.StudentRecordRowMapper;
+import org.project.model.customUtils.StudentAttendanceRecordRowMapper;
+import org.project.model.customUtils.StudentRecordRowMapper;
 import org.project.model.StudentRecord;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.BeanPropertyRowMapper;
@@ -36,36 +37,44 @@ public class DaoImpl implements Dao {
 
     @Override
     public boolean attendanceAppliedInsertion(StudentAttendanceRecord studentAttendanceRecord) {
-        String query = "Insert into student_attendancerecord values(?,?,?,?,?) ";
+        String query = "Insert into student_attendancerecord values(?,?,?,?,?,?) ";
         int rowsInserted = this.jdbcTemplate.update(query, studentAttendanceRecord.getRollNumber(), studentAttendanceRecord.getStudentName(),
-                studentAttendanceRecord.getAttendanceDate(), studentAttendanceRecord.getAttendanceType(), studentAttendanceRecord.getReason());
+                studentAttendanceRecord.getAttendanceDate(), studentAttendanceRecord.getAttendanceType(), studentAttendanceRecord.getReason(), studentAttendanceRecord.getApprovalRejectionStatus());
         return rowsInserted > 0;
     }
 
     @Override
     public boolean leaveAppliedInsertion(StudentAttendanceRecord studentAttendanceRecord) {
-        String query = "Insert into student_attendancerecord values(?,?,?,?,?) ";
+        String query = "Insert into student_attendancerecord values(?,?,?,?,?,?) ";
         int rowsInserted = this.jdbcTemplate.update(query, studentAttendanceRecord.getRollNumber(), studentAttendanceRecord.getStudentName(),
-                studentAttendanceRecord.getAttendanceDate(), studentAttendanceRecord.getAttendanceType(), studentAttendanceRecord.getReason());
+                studentAttendanceRecord.getAttendanceDate(), studentAttendanceRecord.getAttendanceType(), studentAttendanceRecord.getReason(), studentAttendanceRecord.getApprovalRejectionStatus());
         return rowsInserted > 0;
     }
 
     @Override
-    public boolean checkValidityForApplying(Long rollNumber, LocalDate attendanceDate,String attendanceType) {
+    public boolean checkValidityForApplying(Long rollNumber, LocalDate attendanceDate, String attendanceType) {
         String query = "SELECT count(*) from student_attendancerecord where rollNumber = ? and dateOfAttendance = ? and attendanceType = ?";
         int result = 0;
         if (ChronoUnit.DAYS.between(attendanceDate, LocalDate.now()) >= 0) {
-            result = this.jdbcTemplate.queryForObject(query, new Object[]{rollNumber, attendanceDate,attendanceType}, Integer.class);
+            result = this.jdbcTemplate.queryForObject(query, new Object[]{rollNumber, attendanceDate, attendanceType}, Integer.class);
 //            System.out.println(ChronoUnit.DAYS.between(attendanceDate, LocalDate.now()));
         }
         return result == 0;
     }
 
     @Override
-    public StudentAttendanceRecord getStudentDetailsUsingUsername(Long rollNumber) {
-        StudentAttendanceRecord studentAttendanceRecord = null;
+    public List<StudentAttendanceRecord> getStudentDetailsUsingRollNumber(Long rollNumber) {
+        List<StudentAttendanceRecord> studentAttendanceRecord = null;
         String query = "select *from student_attendancerecord where rollNumber = ? ";
-        studentAttendanceRecord = this.jdbcTemplate.queryForObject(query, new Object[]{rollNumber}, new BeanPropertyRowMapper<>(StudentAttendanceRecord.class));
+        studentAttendanceRecord = this.jdbcTemplate.query(query, new Object[]{rollNumber}, new StudentAttendanceRecordRowMapper());
         return studentAttendanceRecord;
+    }
+
+    @Override
+    public boolean updateStatusOfStudent(Long rollNumber, String status,LocalDate dateOfAttendance) {
+        String query = "Update student_attendancerecord set approveRejectStatus = ? where rollNumber = ? and dateOfAttendance = ?";
+        int result = this.jdbcTemplate.update(query, status, rollNumber,dateOfAttendance);
+        System.out.println(result);
+        return result > 0;
     }
 }

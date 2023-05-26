@@ -11,6 +11,15 @@ public class StudentAttendanceRecord {
     private LocalDate attendanceDate;
     private String attendanceType;
     private String reason;
+    private String approvalRejectionStatus;
+
+    public String getApprovalRejectionStatus() {
+        return approvalRejectionStatus;
+    }
+
+    public void setApprovalRejectionStatus(String approvalRejectionStatus) {
+        this.approvalRejectionStatus = approvalRejectionStatus;
+    }
 
     public String getStudentName() {
         return studentName;
@@ -60,6 +69,7 @@ public class StudentAttendanceRecord {
                 ", attendanceDate=" + attendanceDate +
                 ", attendanceType='" + attendanceType + '\'' +
                 ", reason='" + reason + '\'' +
+                ", approvalRejectionStatus='" + approvalRejectionStatus + '\'' +
                 '}';
     }
 }

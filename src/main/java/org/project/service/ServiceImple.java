@@ -40,7 +40,12 @@ public class ServiceImple implements Service {
     }
 
     @Override
-    public StudentAttendanceRecord getStudentDetailsUsingUsername(Long rollNumber) {
-        return dao.getStudentDetailsUsingUsername(rollNumber);
+    public List<StudentAttendanceRecord> getStudentDetailsUsingRollNumber(Long rollNumber) {
+        return dao.getStudentDetailsUsingRollNumber(rollNumber);
+    }
+
+    @Override
+    public boolean updateStatusOfStudent(Long rollNumber,String status,LocalDate dateOfAttendance) {
+        return dao.updateStatusOfStudent(rollNumber,status,dateOfAttendance);
     }
 }

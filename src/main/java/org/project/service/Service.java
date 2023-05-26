@@ -22,6 +22,8 @@ public interface Service {
     boolean checkValidityForApplying(Long rollNumber, LocalDate attendanceDate,String attendanceType);
 
     // fetching student details using roll number
-    StudentAttendanceRecord getStudentDetailsUsingUsername(Long rollNumber);
+    List<StudentAttendanceRecord> getStudentDetailsUsingRollNumber(Long rollNumber);
+    // to update the status of student attendance & leaves
+    boolean updateStatusOfStudent(Long rollNumber,String status,LocalDate dateOfAttendance);
 
 }

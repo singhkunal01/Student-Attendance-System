@@ -1,4 +1,4 @@
-package org.project.model;
+package org.project.model.customUtils;
 
 import org.project.model.StudentRecord;
 import org.springframework.jdbc.core.RowMapper;

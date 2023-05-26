@@ -11,6 +11,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.GetMapping;
 
+import javax.servlet.http.HttpSession;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.List;
@@ -35,6 +36,7 @@ public class LoginController {
 
             List<StudentRecord> allStudents = service.getAllStudentsDetails();
             mp.addAttribute("currentuser", auth.getName());
+
             mp.addAttribute("listOfAllStudents", allStudents);
 
             return "faculty/facultyHome";
