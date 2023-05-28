@@ -5,7 +5,6 @@ import org.project.model.customUtils.StudentAttendanceRecordRowMapper;
 import org.project.model.customUtils.StudentRecordRowMapper;
 import org.project.model.StudentRecord;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.jdbc.core.BeanPropertyRowMapper;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Repository;
 
@@ -52,11 +51,11 @@ public class DaoImpl implements Dao {
     }
 
     @Override
-    public boolean checkValidityForApplying(Long rollNumber, LocalDate attendanceDate, String attendanceType) {
-        String query = "SELECT count(*) from student_attendancerecord where rollNumber = ? and dateOfAttendance = ? and attendanceType = ?";
+    public boolean checkValidityForApplying(Long rollNumber, LocalDate attendanceDate) {
+        String query = "SELECT count(*) from student_attendancerecord where rollNumber = ? and dateOfAttendance = ?";
         int result = 0;
         if (ChronoUnit.DAYS.between(attendanceDate, LocalDate.now()) >= 0) {
-            result = this.jdbcTemplate.queryForObject(query, new Object[]{rollNumber, attendanceDate, attendanceType}, Integer.class);
+            result = this.jdbcTemplate.queryForObject(query, new Object[]{rollNumber, attendanceDate}, Integer.class);
 //            System.out.println(ChronoUnit.DAYS.between(attendanceDate, LocalDate.now()));
         }
         return result == 0;

@@ -57,7 +57,7 @@ public class ApplyAttendanceLeaveController {
         if (ChronoUnit.DAYS.between(attendanceDate, LocalDate.now()) < 0) {
             model.addAttribute("message", "Date Must Be smaller or same as the current business date !");
 
-        } else if (serviceImple.checkValidityForApplying(rollNumber, attendanceDate, attendanceType)) {
+        } else if (serviceImple.checkValidityForApplying(rollNumber, attendanceDate)) {
             serviceImple.attendanceAppliedInsertion(studentAttendanceRecord);
             model.addAttribute("message", "Applied Successfully");
         } else model.addAttribute("message", "Already Applied !");
@@ -92,11 +92,11 @@ public class ApplyAttendanceLeaveController {
         LocalDate attendanceDate = studentAttendanceRecord.getAttendanceDate();
         String attendanceType = studentAttendanceRecord.getAttendanceType();
 
-        // insert the data only if the student not applied the attendance of same day
+        // insert the data only if the student not applied the attendance of same day and the date must not be greater than current business date
         if (ChronoUnit.DAYS.between(attendanceDate, LocalDate.now()) < 0) {
             model.addAttribute("message", "Date Must Be smaller or same as the current business date !");
 
-        } else if (serviceImple.checkValidityForApplying(rollNumber, attendanceDate, attendanceType)) {
+        } else if (serviceImple.checkValidityForApplying(rollNumber, attendanceDate)) {
             serviceImple.leaveAppliedInsertion(studentAttendanceRecord);
             model.addAttribute("message", "Applied Successfully");
         } else model.addAttribute("message", "Already Applied !");

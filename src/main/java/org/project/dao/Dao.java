@@ -14,7 +14,7 @@ public interface Dao {
     boolean attendanceAppliedInsertion(StudentAttendanceRecord studentAttendanceRecord);
     boolean leaveAppliedInsertion(StudentAttendanceRecord studentAttendanceRecord);
 
-    boolean checkValidityForApplying(Long rollNumber, LocalDate attendanceDate,String attendanceType);
+    boolean checkValidityForApplying(Long rollNumber, LocalDate attendanceDate);
 
     List<StudentAttendanceRecord> getStudentDetailsUsingRollNumber(Long rollNumber);
     boolean updateStatusOfStudent(Long rollNumber,String status,LocalDate dateOfAttendance);

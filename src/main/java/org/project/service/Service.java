@@ -19,7 +19,7 @@ public interface Service {
     // inserting the attendance as "Leave"
     boolean leaveAppliedInsertion(StudentAttendanceRecord studentAttendanceRecord);
     // validation check
-    boolean checkValidityForApplying(Long rollNumber, LocalDate attendanceDate,String attendanceType);
+    boolean checkValidityForApplying(Long rollNumber, LocalDate attendanceDate);
 
     // fetching student details using roll number
     List<StudentAttendanceRecord> getStudentDetailsUsingRollNumber(Long rollNumber);

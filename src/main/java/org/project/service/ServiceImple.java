@@ -35,8 +35,8 @@ public class ServiceImple implements Service {
     }
 
     @Override
-    public boolean checkValidityForApplying(Long rollNumber, LocalDate attendanceDate,String attendanceType) {
-        return dao.checkValidityForApplying(rollNumber,attendanceDate,attendanceType);
+    public boolean checkValidityForApplying(Long rollNumber, LocalDate attendanceDate) {
+        return dao.checkValidityForApplying(rollNumber,attendanceDate);
     }
 
     @Override
