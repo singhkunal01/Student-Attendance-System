@@ -142,7 +142,7 @@ height:60%;
 justify-content:center;
 }
 .formDetails div{
-box-shadow: box-shadow: rgb(204, 219, 232) 0px 4px 4px 0px inset, rgba(255, 255, 255, 0.5) -3px -3px 6px 1px inset;
+box-shadow: rgb(204, 219, 232) 0px 4px 4px 0px inset, rgba(255, 255, 255, 0.5) -3px -3px 6px 1px inset;
 width:50%;
 padding : 40px 30px;
 }
