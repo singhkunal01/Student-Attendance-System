@@ -10,7 +10,7 @@ import java.util.List;
 @Repository
 public interface Dao {
     List<StudentRecord> getAllStudentsDetails ();
-    StudentRecord studentData(String username);
+    StudentRecord getStudentData(String username);
     boolean attendanceAppliedInsertion(StudentAttendanceRecord studentAttendanceRecord);
     boolean leaveAppliedInsertion(StudentAttendanceRecord studentAttendanceRecord);
 

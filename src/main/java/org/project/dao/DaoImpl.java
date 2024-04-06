@@ -27,7 +27,7 @@ public class DaoImpl implements Dao {
     }
 
     @Override
-    public StudentRecord studentData(String username) {
+    public StudentRecord getStudentData(String username) {
         StudentRecord studentRecord = null;
         String query = "select *from student_record where student_username = ? ";
         studentRecord = this.jdbcTemplate.queryForObject(query, new Object[]{username}, new StudentRecordRowMapper());

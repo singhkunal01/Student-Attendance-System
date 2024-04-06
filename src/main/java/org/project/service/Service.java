@@ -12,7 +12,7 @@ public interface Service {
     List<StudentRecord> getAllStudentsDetails();
 
     // to fetch details of single student on the basis of username
-    StudentRecord studentData(String username);
+    StudentRecord getStudentData(String username);
 
     // inserting the attendance as "Present"
     boolean attendanceAppliedInsertion(StudentAttendanceRecord studentAttendanceRecord);

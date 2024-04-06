@@ -141,7 +141,7 @@ session.setAttribute("currentLoggedInStudentData",currentLoggedInStudentData);
     <div class = "first-section">
         <p class="icon"> <i class="fa-sharp fa-light fa-user"></i> Hi, &nbsp;${currentLoggedInStudentData.getStudentName()}  </p>
         <p class="icon fa-fade"> <i class="fa-sharp fa-arrow-right-from-bracket fa-beat"></i><a href="logout"> Logout </a></p>
-        <p style = "color:#e0d684;"> <i class="fa-sharp fa-calendar-days"></i> ${currentBusinessDate}</p>
+        <p style = "color:#e0d684;"> <i class="fa-sharp fa-calendar-days"></i> ${currentSystemDate}</p>
     </div>
 
     <div class = "second-section">

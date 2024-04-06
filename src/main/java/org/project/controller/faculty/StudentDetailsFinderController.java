@@ -4,6 +4,7 @@ import org.project.model.StudentAttendanceRecord;
 import org.project.model.StudentRecord;
 import org.project.model.customUtils.DateConverter;
 import org.project.service.ServiceImple;
+import org.project.utilities.ProjectUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
@@ -13,7 +14,6 @@ import org.springframework.web.bind.annotation.InitBinder;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpSession;
 import java.time.LocalDate;
 import java.util.List;
 
@@ -31,8 +31,10 @@ public class StudentDetailsFinderController {
     @GetMapping("faculty/studentDetail")
     private String giveData(@RequestParam("username") String username, ModelMap mp, HttpServletRequest request) {
 // find the details of the particular roll number
-        StudentRecord studentRecord = serviceImple.studentData(username);
+        StudentRecord studentRecord = serviceImple.getStudentData(username);
         mp.addAttribute("studentName", studentRecord.getStudentName());
+        mp.addAttribute("currentUser", ProjectUtils.getLoggedInUserDetails().getUsername());
+        mp.addAttribute("currentSystemDate", ProjectUtils.getLoggedInUserDetails().getUsername());
         // now fetch all the attendance & leaves with the help of roll number
         List<StudentAttendanceRecord> studentAttendanceRecords = serviceImple.getStudentDetailsUsingRollNumber(studentRecord.getRollNumber());
         mp.addAttribute("currentStudentWholeRecord", studentAttendanceRecords);

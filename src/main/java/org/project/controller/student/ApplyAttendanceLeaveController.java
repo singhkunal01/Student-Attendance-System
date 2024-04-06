@@ -4,6 +4,7 @@ import org.project.model.StudentAttendanceRecord;
 import org.project.model.StudentRecord;
 import org.project.model.customUtils.DateConverter;
 import org.project.service.ServiceImple;
+import org.project.utilities.ProjectUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -31,8 +32,7 @@ public class ApplyAttendanceLeaveController {
     String applyAttendance(HttpSession session, ModelMap mp) {
         StudentRecord studentRecord = (StudentRecord) session.getAttribute("currentLoggedInStudentData");
         mp.addAttribute("studentAttendanceRecord", new StudentAttendanceRecord());
-        LocalDate currentBusinessDate = LocalDate.now();
-        mp.addAttribute("currentBusinessDate", currentBusinessDate);
+        mp.addAttribute("currentSystemDate", ProjectUtils.getCurrentSystemDate());
 
         return "student/applyAttendancePage";
     }
@@ -70,8 +70,7 @@ public class ApplyAttendanceLeaveController {
     String applyLeave(HttpSession session, ModelMap mp) {
         StudentRecord studentRecord = (StudentRecord) session.getAttribute("currentLoggedInStudentData");
         mp.addAttribute("studentAttendanceRecord", new StudentAttendanceRecord());
-        LocalDate currentBusinessDate = LocalDate.now();
-        mp.addAttribute("currentBusinessDate", currentBusinessDate);
+        mp.addAttribute("currentSystemDate", ProjectUtils.getCurrentSystemDate());
 
         return "student/applyLeavePage";
     }
