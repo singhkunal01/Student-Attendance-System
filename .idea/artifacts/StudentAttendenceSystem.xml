@@ -1,6 +1,0 @@
-<component name="ArtifactManager">
-  <artifact name="StudentAttendenceSystem">
-    <output-path>$PROJECT_DIR$/out/artifacts/StudentAttendenceSystem</output-path>
-    <root id="root" />
-  </artifact>
-</component>
